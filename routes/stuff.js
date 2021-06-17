@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const stuffCtrl = require('../controllers/stuff')
+const auth = require('../middleware/auth')
 
 // Requete POST
-router.post('/', stuffCtrl.createThing)
+router.post('/', auth, stuffCtrl.createThing)
 
 // Get All products
 router.get('/', stuffCtrl.getAllThing)
@@ -14,10 +15,10 @@ router.get('/', stuffCtrl.getAllThing)
 router.get('/:id', stuffCtrl.getOneThing)
 
 // Requete PUT
-router.put('/:id', stuffCtrl.updateOneThing)
+router.put('/:id', auth, stuffCtrl.updateOneThing)
 
 // Requete Delete
-router.delete('/:id', stuffCtrl.deleteOneThing)
+router.delete('/:id', auth, stuffCtrl.deleteOneThing)
 
 // on definit nos routes GET, POST, PATCH etc
 // .use va traiter tous types de requête
